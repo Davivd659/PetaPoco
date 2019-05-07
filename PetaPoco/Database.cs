@@ -413,7 +413,10 @@ namespace PetaPoco
             if (_sharedConnectionDepth > 0)
             {
                 _sharedConnectionDepth--;
-                if (_sharedConnectionDepth == 0)
+            }
+            else if (_sharedConnectionDepth == 0)
+            {
+                if (_sharedConnection != null)
                 {
                     OnConnectionClosing(_sharedConnection);
                     _sharedConnection.Dispose();
